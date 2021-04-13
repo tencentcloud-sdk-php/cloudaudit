@@ -18,26 +18,36 @@ namespace TencentCloud\Cloudaudit\V20190319\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * ListKeyAliasByRegion返回参数结构体
+ * DescribeEvents返回参数结构体
  *
- * @method integer getTotalCount() 获取CMK的总数量
- * @method void setTotalCount(integer $TotalCount) 设置CMK的总数量
- * @method array getKeyMetadatas() 获取密钥别名
- * @method void setKeyMetadatas(array $KeyMetadatas) 设置密钥别名
+ * @method boolean getListOver() 获取日志集合是否结束
+ * @method void setListOver(boolean $ListOver) 设置日志集合是否结束
+ * @method integer getNextToken() 获取查看更多日志的凭证
+ * @method void setNextToken(integer $NextToken) 设置查看更多日志的凭证
+ * @method array getEvents() 获取日志集合
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setEvents(array $Events) 设置日志集合
+注意：此字段可能返回 null，表示取不到有效值。
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  */
-class ListKeyAliasByRegionResponse extends AbstractModel
+class DescribeEventsResponse extends AbstractModel
 {
     /**
-     * @var integer CMK的总数量
+     * @var boolean 日志集合是否结束
      */
-    public $TotalCount;
+    public $ListOver;
 
     /**
-     * @var array 密钥别名
+     * @var integer 查看更多日志的凭证
      */
-    public $KeyMetadatas;
+    public $NextToken;
+
+    /**
+     * @var array 日志集合
+注意：此字段可能返回 null，表示取不到有效值。
+     */
+    public $Events;
 
     /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -45,8 +55,10 @@ class ListKeyAliasByRegionResponse extends AbstractModel
     public $RequestId;
 
     /**
-     * @param integer $TotalCount CMK的总数量
-     * @param array $KeyMetadatas 密钥别名
+     * @param boolean $ListOver 日志集合是否结束
+     * @param integer $NextToken 查看更多日志的凭证
+     * @param array $Events 日志集合
+注意：此字段可能返回 null，表示取不到有效值。
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
@@ -62,16 +74,20 @@ class ListKeyAliasByRegionResponse extends AbstractModel
         if ($param === null) {
             return;
         }
-        if (array_key_exists("TotalCount",$param) and $param["TotalCount"] !== null) {
-            $this->TotalCount = $param["TotalCount"];
+        if (array_key_exists("ListOver",$param) and $param["ListOver"] !== null) {
+            $this->ListOver = $param["ListOver"];
         }
 
-        if (array_key_exists("KeyMetadatas",$param) and $param["KeyMetadatas"] !== null) {
-            $this->KeyMetadatas = [];
-            foreach ($param["KeyMetadatas"] as $key => $value){
-                $obj = new KeyMetadata();
+        if (array_key_exists("NextToken",$param) and $param["NextToken"] !== null) {
+            $this->NextToken = $param["NextToken"];
+        }
+
+        if (array_key_exists("Events",$param) and $param["Events"] !== null) {
+            $this->Events = [];
+            foreach ($param["Events"] as $key => $value){
+                $obj = new Event();
                 $obj->deserialize($value);
-                array_push($this->KeyMetadatas, $obj);
+                array_push($this->Events, $obj);
             }
         }
 
