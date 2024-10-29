@@ -18,20 +18,24 @@ namespace TencentCloud\Cloudaudit\V20190319\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * DeleteAudit请求参数结构体
+ * 跟踪集数据投递筛选条件
  *
- * @method string getAuditName() 获取跟踪集名称
- * @method void setAuditName(string $AuditName) 设置跟踪集名称
+ * @method array getResourceFields() 获取资源筛选条件
+注意：此字段可能返回 null，表示取不到有效值。
+ * @method void setResourceFields(array $ResourceFields) 设置资源筛选条件
+注意：此字段可能返回 null，表示取不到有效值。
  */
-class DeleteAuditRequest extends AbstractModel
+class Filter extends AbstractModel
 {
     /**
-     * @var string 跟踪集名称
+     * @var array 资源筛选条件
+注意：此字段可能返回 null，表示取不到有效值。
      */
-    public $AuditName;
+    public $ResourceFields;
 
     /**
-     * @param string $AuditName 跟踪集名称
+     * @param array $ResourceFields 资源筛选条件
+注意：此字段可能返回 null，表示取不到有效值。
      */
     function __construct()
     {
@@ -46,8 +50,13 @@ class DeleteAuditRequest extends AbstractModel
         if ($param === null) {
             return;
         }
-        if (array_key_exists("AuditName",$param) and $param["AuditName"] !== null) {
-            $this->AuditName = $param["AuditName"];
+        if (array_key_exists("ResourceFields",$param) and $param["ResourceFields"] !== null) {
+            $this->ResourceFields = [];
+            foreach ($param["ResourceFields"] as $key => $value){
+                $obj = new ResourceField();
+                $obj->deserialize($value);
+                array_push($this->ResourceFields, $obj);
+            }
         }
     }
 }
